@@ -46,6 +46,8 @@ class Game
       
     end
   end
+     @new_board.show_board
+  end  
 end
 
 game_board = Game.new
