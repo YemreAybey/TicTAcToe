@@ -17,4 +17,15 @@ class Board
     @board[num-1] = char
     self.show_board
   end
+
+  def check_board
+    @board.include? Integer
+  end
+
+  def winner
+    for i in @board
+      if @board[i] 
+      end 
+    end
+  end
 end
