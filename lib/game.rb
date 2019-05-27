@@ -38,16 +38,21 @@ class Game
       puts "please choose any number from board to put #{@player2.sign}"  
       cell = gets.chomp
       @new_board.update(cell, @player2.sign)
-      @new_board.show_board      
+      @new_board.show_board
+      check_game     
     end
   end
   def check_game
-    if !@new_board.check_board
-      
+    if @new_board.check_board
+      @new_board.show_board
+      winner
     end
   end
      @new_board.show_board
-  end  
+  end
+  def winner
+    new_board.check_winner
+  end
 end
 
 game_board = Game.new

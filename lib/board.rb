@@ -1,5 +1,5 @@
 class Board
-  @@board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @winner_points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 4, 7, 2, 5, 8, 3, 6, 9, 1, 5, 9, 7, 5, 3]
   def initialize
     @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   end
@@ -21,11 +21,11 @@ class Board
   def check_board
     @board.include? Integer
   end
-
-  def winner
-    for i in @board
-      if @board[i] 
-      end 
+  def check_winner
+    while i < @winner_points.length
+      if @winner_points[i] == @winner_points[i+1] && @winner_points[i] == @winner_points[i+2]
+        return @winner_points[i]
+      end
     end
   end
 end
