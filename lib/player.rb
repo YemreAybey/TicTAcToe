@@ -1,12 +1,6 @@
-require_relative 'board.rb'
-require_relative 'game.rb'
-
 class Player
+  attr_accessor :sign
   def initialize
-    @player = player
-  end
-
-  def play(char)
-    
+    self.sign = nil
   end
 end

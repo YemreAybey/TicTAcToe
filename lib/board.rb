@@ -1,5 +1,5 @@
 class Board
-  @winner_points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 4, 7, 2, 5, 8, 3, 6, 9, 1, 5, 9, 7, 5, 3]
+  @@winner_points = [0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 3, 6, 1, 4, 7, 2, 5, 8, 0, 4, 8, 6, 4, 2]
   def initialize
     @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   end
@@ -15,17 +15,19 @@ class Board
 
   def update_board(num, char)
     @board[num-1] = char
-    self.show_board
   end
 
   def check_board
-    @board.include? Integer
+    @board.any? Integer
   end
   def check_winner
-    while i < @winner_points.length
-      if @winner_points[i] == @winner_points[i+1] && @winner_points[i] == @winner_points[i+2]
-        return @winner_points[i]
+    i = 0
+    while i < @@winner_points.length
+      if @board[@@winner_points[i]] == @board[@@winner_points[i+1]] && @board[@@winner_points[i]] == @board[@@winner_points[i+2]]
+        return true
       end
+      i = i + 3
     end
+    false
   end
 end
