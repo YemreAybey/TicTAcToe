@@ -18,14 +18,17 @@ class Board
   end
 
   def check_board    
-    checking = @board.select { |num| num.class == Integer}
-    puts checking
-    if checking.length > 0 
-      true  
+    @board.any? Integer
+  end
+
+  def check_sign(num)
+    if @board[num.to_i - 1] == num.to_i
+      true
     else
       false
     end
   end
+
   def check_winner
     i = 0
     while i < @@winner_points.length

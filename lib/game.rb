@@ -34,19 +34,39 @@ class Game
     while @new_board.check_board
       puts "please choose any number from board to put #{@player1.sign}"  
       cell = gets.chomp
-      @new_board.update_board(cell.to_i, @player1.sign)
-      @new_board.show_board
-      is_winner = check_game
+
+        until @new_board.check_sign(cell)
+          if (1..9).include?(cell.to_i)
+            puts "This number is not available. Please choose another number"
+          else
+          puts "This is a string please put number"
+        end
+          cell = gets.chomp
+        end
+
+          @new_board.update_board(cell.to_i, @player1.sign)
+          @new_board.show_board
+          is_winner = check_game
       
-      if is_winner == true
-        puts "Player1 won"
-        return "Player1 won"
-      elsif is_winner == false && !@new_board.check_board
-        puts "It is a draw"
-        return "It is a draw"
-      end
+          if is_winner == true
+            puts "Player1 won"
+            return "Player1 won"
+          elsif is_winner == false && !@new_board.check_board
+            puts "It is a draw"
+            return "It is a draw"
+          end
+  
       puts "please choose any number from board to put #{@player2.sign}"  
       cell = gets.chomp
+      until @new_board.check_sign(cell)
+        if (1..9).include?(cell.to_i)
+          puts "This number is not available. Please choose another number"
+        else
+          puts "This is a string please put number"
+        end
+        cell = gets.chomp
+      end 
+
       @new_board.update_board(cell.to_i, @player2.sign)
       @new_board.show_board
       is_winner = check_game
