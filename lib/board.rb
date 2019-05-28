@@ -17,8 +17,14 @@ class Board
     @board[num-1] = char
   end
 
-  def check_board
-    @board.any? Integer
+  def check_board    
+    checking = @board.select { |num| num.class == Integer}
+    puts checking
+    if checking.length > 0 
+      true  
+    else
+      false
+    end
   end
   def check_winner
     i = 0
@@ -31,3 +37,4 @@ class Board
     false
   end
 end
+

@@ -37,6 +37,7 @@ class Game
       @new_board.update_board(cell.to_i, @player1.sign)
       @new_board.show_board
       is_winner = check_game
+      
       if is_winner == true
         puts "Player1 won"
         return "Player1 won"
