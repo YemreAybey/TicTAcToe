@@ -20,8 +20,8 @@ class Game
     puts "Choose X or O"
     @player1.sign = gets.chomp
     
-    while @player1.sign != "X" &&  @player1.sign  !="O"
-      puts "please choose x or o"
+    while @player1.sign != "X" &&  @player1.sign  != "O"
+      puts "please choose X or O"
       @player1.sign = gets.chomp      
     end
 
@@ -47,13 +47,38 @@ class Game
           @new_board.update_board(cell.to_i, @player1.sign)
           @new_board.show_board
           is_winner = check_game
-      
+
           if is_winner == true
             puts "Player1 won"
-            return "Player1 won"
+            puts "Would you like to play again? Type Y/N"
+            input = gets.chomp
+              until input == "Y" || input == "N"              
+              puts "Please enter Y or N"
+              input = gets.chomp
+            end                      
+            if input == "Y"            
+            @new_board = Board.new
+            play
+            else
+              puts "Thank you for playing game"
+              break
+            end
+            
           elsif is_winner == false && !@new_board.check_board
             puts "It is a draw"
-            return "It is a draw"
+            puts "Would you like to play again? Type Y/N"
+            input = gets.chomp
+            until input == "Y" || input == "N"              
+              puts "Please enter Y or N"
+              input = gets.chomp
+            end          
+            if input == "Y"            
+              @new_board = Board.new
+              play              
+              else
+                puts "Thank you for playing game"
+                break
+              end            
           end
   
       puts "please choose any number from board to put #{@player2.sign}"  
@@ -70,15 +95,41 @@ class Game
       @new_board.update_board(cell.to_i, @player2.sign)
       @new_board.show_board
       is_winner = check_game
-      if is_winner == true
-        puts "Player2 won"
-        return "Player2 won"
-      elsif is_winner == false && !@new_board.check_board
-        puts "It is a draw"
-        return "It is a draw"
-      end     
-    end
-    
+
+          if is_winner == true
+            puts "Player1 won"
+            puts "Would you like to play again? Type Y/N"
+            input = gets.chomp
+              until input == "Y" || input == "N"              
+              puts "Please enter Y or N"
+              input = gets.chomp
+            end                      
+            if input == "Y"            
+            @new_board = Board.new
+            play
+            else
+              puts "Thank you for playing game"
+              break
+            end
+            
+          elsif is_winner == false && !@new_board.check_board
+            puts "It is a draw"
+            puts "Would you like to play again? Type Y/N"
+            input = gets.chomp
+            until input == "Y" || input == "N"              
+              puts "Please enter Y or N"
+              input = gets.chomp
+            end          
+            if input == "Y"            
+              @new_board = Board.new
+              play              
+              else
+                puts "Thank you for playing game"
+                break
+              end            
+          end
+
+      end    
   end
   def check_game
       winner
