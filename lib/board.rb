@@ -8,11 +8,13 @@ class Board
 
   def show_board
     i = 0
+    puts "\n"
     while i < @board.length
       puts " #{@board[i]} | #{@board[i + 1]} | #{@board[i + 2]}"
       puts '---+---+---'
       i += 3
     end
+    puts "\n"
   end
 
   def update_board(num, char)
