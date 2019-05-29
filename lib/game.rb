@@ -64,7 +64,7 @@ def play
       end
 
     elsif is_winner == false && !@new_board.check_board
-      puts 'It is a draw\nWould you like to play again? Type Y/N'
+      puts "It is a draw\nWould you like to play again? Type Y/N"
       input = gets.chomp
       until input == 'Y' || input == 'N'
         puts 'Please enter Y or N'
