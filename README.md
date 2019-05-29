@@ -6,11 +6,10 @@ First you need to have following ruby in your computer
 
 ruby version should be >= 2.5.5
 
-`` 
-cd bin 
+```console
+cd bin
 ruby main.rb
-
-``
+```
 
 # How to Play Game
 - There is a 3X3 board with numbers inside each cell
