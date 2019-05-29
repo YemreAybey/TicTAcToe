@@ -132,5 +132,3 @@ def winner
   @new_board.check_winner
 end
 end
-
-Game.new
