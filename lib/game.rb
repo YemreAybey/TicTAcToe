@@ -24,10 +24,10 @@ class Game
       @ui.show_board(@new_board)
       is_winner = check_game
       if is_winner == true
-        continue = @ui.player1_msg
+        self.continue = @ui.player1_msg
         return
       elsif is_winner == false && !@new_board.check_board
-        continue = @ui.draw_msg
+        self.continue = @ui.draw_msg
         return
       end
       cell = @ui.choose_num(@new_board)

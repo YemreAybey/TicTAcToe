@@ -13,6 +13,18 @@ class UI
     puts '----Any player gets 3 consequetive X or O then he or she wins-----'
   end
 
+  def show_board(board)
+    arr = board.board
+    i = 0
+    puts "\n"
+    while i < arr.length
+      puts " #{arr[i]} | #{arr[i + 1]} | #{arr[i + 2]}"
+      puts '---+---+---'
+      i += 3
+    end
+    puts "\n"
+  end
+
   def choose_sign
     puts 'please choose X or O'
     sign = gets.chomp
@@ -69,17 +81,5 @@ class UI
     end
     puts 'Thanks for playing' if input == 'N'
     input
-  end
-
-  def show_board(board)
-    arr = board.board
-    i = 0
-    puts "\n"
-    while i < arr.length
-      puts " #{arr[i]} | #{arr[i + 1]} | #{arr[i + 2]}"
-      puts '---+---+---'
-      i += 3
-    end
-    puts "\n"
   end
 end
