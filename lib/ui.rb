@@ -1,16 +1,16 @@
+# frozen_string_literal: true
+
 require_relative 'game.rb'
 require_relative 'board.rb'
 require_relative 'player.rb'
 
-
 class UI
-
   def instructions
-    puts "Tictactoe game is 3X3 board game. You need to choose either X or O"
-    puts "******************************************************************"
-    puts "---Every turn the players puts the sign X or O on their turn if---"
-    puts "******************************************************************"
-    puts "----Any player gets 3 consequetive X or O then he or she wins-----"
+    puts 'Tictactoe game is 3X3 board game. You need to choose either X or O'
+    puts '******************************************************************'
+    puts '---Every turn the players puts the sign X or O on their turn if---'
+    puts '******************************************************************'
+    puts '----Any player gets 3 consequetive X or O then he or she wins-----'
   end
 
   def choose_sign
@@ -24,7 +24,7 @@ class UI
   end
 
   def choose_num(board)
-    puts "please choose any number from board"
+    puts 'please choose any number from board'
     cell = gets.chomp
 
     until board.check_sign(cell)
@@ -34,7 +34,7 @@ class UI
         puts 'This is not available please choose from the board!'
       end
       cell = gets.chomp
-    end  
+    end
     cell
   end
 
@@ -45,9 +45,7 @@ class UI
       puts 'Please enter Y or N'
       input = gets.chomp
     end
-    if input == 'N'
-      puts 'Thanks for playing'              
-    end    
+    puts 'Thanks for playing' if input == 'N'
     input
   end
 
@@ -58,9 +56,7 @@ class UI
       puts 'Please enter Y or N'
       input = gets.chomp
     end
-    if input == 'N'
-      puts 'Thanks for playing'              
-    end    
+    puts 'Thanks for playing' if input == 'N'
     input
   end
 
@@ -71,11 +67,10 @@ class UI
       puts 'Please enter Y or N'
       input = gets.chomp
     end
-    if input == 'N'
-      puts 'Thanks for playing'              
-    end    
+    puts 'Thanks for playing' if input == 'N'
     input
   end
+
   def show_board(board)
     arr = board.board
     i = 0
@@ -87,6 +82,4 @@ class UI
     end
     puts "\n"
   end
-
 end
-
