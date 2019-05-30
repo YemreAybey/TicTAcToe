@@ -1,20 +1,11 @@
 # frozen_string_literal: true
 
 class Board
-  @@winner_points = [0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 3, 6, 1, 4, 7, 2, 5, 8, 0, 4, 8, 6, 4, 2]
+  attr_accessor :board
+
   def initialize
     @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  end
-
-  def show_board
-    i = 0
-    puts "\n"
-    while i < @board.length
-      puts " #{@board[i]} | #{@board[i + 1]} | #{@board[i + 2]}"
-      puts '---+---+---'
-      i += 3
-    end
-    puts "\n"
+    @winner_points = [0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 3, 6, 1, 4, 7, 2, 5, 8, 0, 4, 8, 6, 4, 2]
   end
 
   def update_board(num, char)
@@ -31,8 +22,9 @@ class Board
 
   def check_winner
     i = 0
-    while i < @@winner_points.length
-      if @board[@@winner_points[i]] == @board[@@winner_points[i + 1]] && @board[@@winner_points[i]] == @board[@@winner_points[i + 2]]
+    while i < @winner_points.length
+      if @board[@winner_points[i]] == @board[@winner_points[i + 1]] &&
+         @board[@winner_points[i]] == @board[@winner_points[i + 2]]
         return true
       end
 
