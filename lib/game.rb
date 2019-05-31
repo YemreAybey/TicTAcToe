@@ -21,14 +21,17 @@ class Game
       @player1.make_move(@new_board, cell.to_i)
       show_board(@new_board)
       is_winner = winner
+      is_finished=checking_winner(is_winner, UI::PLAYER1MSG)
+      return if is_finished
       
-      checking_winner(is_winner, player1_msg)
       
       cell = choose_num(@new_board)
       @player2.make_move(@new_board, cell.to_i)
       show_board(@new_board)
       is_winner = winner
-      checking_winner(is_winner, player2_msg)
+      is_finished = checking_winner(is_winner, UI::PLAYER2MSG)
+      return if is_finished
+
     end
   end
 
@@ -40,13 +43,19 @@ class Game
   end
 
   def checking_winner(winner, msg)
+    is_there = false
     if winner == true
-        self.continue = msg            
-      return
+      if msg == UI::PLAYER1MSG
+       self.continue = player1_msg 
+       is_there = true          
+      elsif msg == UI::PLAYER2MSG
+        self.continue = player2_msg
+        is_there = true 
+      end
     elsif winner == false && !@new_board.not_full?
       self.continue = draw_msg
-      return
+      is_there = true 
     end
-    
+    is_there
   end
 end

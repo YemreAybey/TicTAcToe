@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module UI
+  PLAYER1MSG = "Player1 won\nWould you like to play again? Type Y/N"
+  PLAYER2MSG = "Player2 won\nWould you like to play again? Type Y/N"
+  DRAWMSG = "It's a draw\nWould you like to play again? Type Y/N"
   def instructions
     puts 'Tictactoe game is 3X3 board game. You need to choose either X or O'
     puts '******************************************************************'
@@ -50,8 +53,7 @@ module UI
     cell
   end
 
-  def player1_msg
-    puts "Player1 won\nWould you like to play again? Type Y/N"
+  def play_again?
     input = gets.chomp
     until input == 'Y' || input == 'N'
       puts 'Please enter Y or N'
@@ -59,27 +61,21 @@ module UI
     end
     puts 'Thanks for playing' if input == 'N'
     input
+  end
+
+  def player1_msg
+    puts UI::PLAYER1MSG
+    play_again?
   end
 
   def draw_msg
-    puts "It is a draw\nWould you like to play again? Type Y/N"
-    input = gets.chomp
-    until input == 'Y' || input == 'N'
-      puts 'Please enter Y or N'
-      input = gets.chomp
-    end
-    puts 'Thanks for playing' if input == 'N'
-    input
+    puts UI::DRAWMSG
+    play_again?
   end
 
   def player2_msg
-    puts "Player2 won\nWould you like to play again? Type Y/N"
-    input = gets.chomp
-    until input == 'Y' || input == 'N'
-      puts 'Please enter Y or N'
-      input = gets.chomp
-    end
-    puts 'Thanks for playing' if input == 'N'
-    input
+    puts UI::PLAYER2MSG
+    play_again?
+    
   end
 end
