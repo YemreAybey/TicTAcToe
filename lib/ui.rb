@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'game.rb'
-require_relative 'board.rb'
-require_relative 'player.rb'
-
-class UI
+module UI
   def instructions
     puts 'Tictactoe game is 3X3 board game. You need to choose either X or O'
     puts '******************************************************************'
@@ -33,6 +29,10 @@ class UI
       sign = gets.chomp
     end
     sign
+  end
+
+  def decide_other_sign(sign)
+    sign == 'X' ? 'O' : 'X'
   end
 
   def choose_num(board)

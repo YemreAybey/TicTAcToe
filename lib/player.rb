@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative 'ui.rb'
 require_relative 'board.rb'
+
+include UI
 
 class Player
   attr_accessor :sign
-
-  def initialize(sign = nil)    
-    @sign = sign.choose_sign if sign != nil
+  def initialize(sign)
+    @sign = sign
   end
 
   def assign_sign(sign)

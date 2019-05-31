@@ -2,61 +2,51 @@
 
 require_relative 'board.rb'
 require_relative 'player.rb'
-require_relative 'ui.rb'
+
+include UI
 
 class Game
   attr_accessor :continue
-  def initialize(board, player1, player2, ui)
+  def initialize(board, player1, player2)
     @new_board = board
     @player1 = player1
     @player2 = player2
-    @ui = ui
-    @ui.show_board(@new_board)
     play
   end
 
   def play
     
-    @player2.sign = @player1.sign == 'X' ? 'O' : 'X'
-
-    
-
     while @new_board.not_full?
-      cell = @ui.choose_num(@new_board)
+      cell = choose_num(@new_board)
       @player1.make_move(@new_board, cell.to_i)
-      @ui.show_board(@new_board)
-      is_winner = check_game
-      if is_winner == true
-        self.continue = @ui.player1_msg
-        return
-      elsif is_winner == false && !@new_board.not_full?
-        self.continue = @ui.draw_msg
-        return
-      end
-
-      cell = @ui.choose_num(@new_board)
+      show_board(@new_board)
+      is_winner = winner
+      
+      checking_winner(is_winner, player1_msg)
+      
+      cell = choose_num(@new_board)
       @player2.make_move(@new_board, cell.to_i)
-      @ui.show_board(@new_board)
-      is_winner = check_game
-
-      if is_winner == true
-        self.continue = @ui.player2_msg
-        return
-      elsif is_winner == false && !@new_board.not_full?
-        self.continue = @ui.draw_msg
-        return
-      end
-
+      show_board(@new_board)
+      is_winner = winner
+      checking_winner(is_winner, player2_msg)
     end
   end
 
-  def check_game
-    winner
-  end
-
+  
   private
 
   def winner
     @new_board.check_winner
+  end
+
+  def checking_winner(winner, msg)
+    if winner == true
+        self.continue = msg            
+      return
+    elsif winner == false && !@new_board.not_full?
+      self.continue = draw_msg
+      return
+    end
+    
   end
 end
