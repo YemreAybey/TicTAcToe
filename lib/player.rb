@@ -5,8 +5,9 @@ require_relative 'board.rb'
 
 class Player
   attr_accessor :sign
-  def initialize
-    self.sign = nil
+
+  def initialize(sign = nil)    
+    @sign = sign.choose_sign if sign != nil
   end
 
   def assign_sign(sign)

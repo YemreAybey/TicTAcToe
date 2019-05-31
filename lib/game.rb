@@ -16,9 +16,12 @@ class Game
   end
 
   def play
-    @player1.assign_sign(@ui)
+    
     @player2.sign = @player1.sign == 'X' ? 'O' : 'X'
-    while @new_board.check_board
+
+    
+
+    while @new_board.not_full?
       cell = @ui.choose_num(@new_board)
       @player1.make_move(@new_board, cell.to_i)
       @ui.show_board(@new_board)
@@ -26,10 +29,11 @@ class Game
       if is_winner == true
         self.continue = @ui.player1_msg
         return
-      elsif is_winner == false && !@new_board.check_board
+      elsif is_winner == false && !@new_board.not_full?
         self.continue = @ui.draw_msg
         return
       end
+
       cell = @ui.choose_num(@new_board)
       @player2.make_move(@new_board, cell.to_i)
       @ui.show_board(@new_board)
@@ -38,7 +42,7 @@ class Game
       if is_winner == true
         self.continue = @ui.player2_msg
         return
-      elsif is_winner == false && !@new_board.check_board
+      elsif is_winner == false && !@new_board.not_full?
         self.continue = @ui.draw_msg
         return
       end

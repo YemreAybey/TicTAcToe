@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Board
-  attr_accessor :board
+  attr_reader :board
 
   def initialize
     @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -12,7 +12,7 @@ class Board
     @board[num - 1] = char
   end
 
-  def check_board
+  def not_full?
     @board.any? Integer
   end
 
