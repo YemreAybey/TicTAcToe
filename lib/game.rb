@@ -17,46 +17,53 @@ class Game
   def play
     
     while @new_board.not_full?
-      cell = choose_num(@new_board)
-      @player1.make_move(@new_board, cell.to_i)
-      show_board(@new_board)
-      is_winner = winner
-      is_finished=checking_winner(is_winner, UI::PLAYER1MSG)
-      return if is_finished
+    ending= sth(@player1, @new_board, UI::PLAYER1MSG)
+    return if ending
       
       
-      cell = choose_num(@new_board)
-      @player2.make_move(@new_board, cell.to_i)
-      show_board(@new_board)
-      is_winner = winner
-      is_finished = checking_winner(is_winner, UI::PLAYER2MSG)
-      return if is_finished
-
+    ending = sth(@player2, @new_board, UI::PLAYER2MSG)
+    return if ending
     end
   end
 
   
   private
 
-  def winner
-    @new_board.check_winner
+  def sth(player, board, msg)
+    cell = choose_num(board)
+    player.make_move(board, cell.to_i)
+    show_board(board)
+    is_winner = has_won?(player)
+    if is_winner
+     ans=checking_winner(msg)
+
+    else
+      is_full = !board.not_full?
+      if is_full == true
+        ans=checking_winner(UI::DRAWMSG)
+      end
+    end
+    ans
   end
 
-  def checking_winner(winner, msg)
-    is_there = false
-    if winner == true
+  def has_won?(player)
+    @new_board.check_winner(player.sign)
+  end
+
+  def checking_winner(msg)
       if msg == UI::PLAYER1MSG
-       self.continue = player1_msg 
-       is_there = true          
+       self.continue = player1_msg
+       return true
+
       elsif msg == UI::PLAYER2MSG
         self.continue = player2_msg
-        is_there = true 
+        return true
+        elsif msg == UI::DRAWMSG
+          self.continue = draw_msg
+          return true
       end
-    elsif winner == false && !@new_board.not_full?
-      self.continue = draw_msg
-      is_there = true 
+      false
     end
-    is_there
-  end
+
   
 end

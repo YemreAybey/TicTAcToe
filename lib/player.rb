@@ -14,4 +14,5 @@ class Player
   def make_move(board, cell)
     board.update_board(cell, sign)
   end
+
 end

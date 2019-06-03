@@ -22,11 +22,11 @@ class Board
     @board[num.to_i - 1] == num.to_i
   end
 
-  def check_winner
+  def check_winner(sign)
     i = 0
     while i < @winner_points.length
-      if @board[@winner_points[i]] == @board[@winner_points[i + 1]] &&
-         @board[@winner_points[i]] == @board[@winner_points[i + 2]]
+      if @board[@winner_points[i]] == sign && @board[@winner_points[i + 1]] == sign &&
+         @board[@winner_points[i + 2]] == sign
         return true
       end
 
