@@ -6,7 +6,7 @@ require_relative '../lib/game.rb'
 require_relative '../lib/module.rb'
 
 include UI
-
+# To continue the game
 module BoardLogic
   def continue_until_no(answer)
     until answer.continue == 'N'

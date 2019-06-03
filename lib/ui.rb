@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# module for user interface
 module UI
   PLAYER1MSG = "Player1 won\nWould you like to play again? Type Y/N"
   PLAYER2MSG = "Player2 won\nWould you like to play again? Type Y/N"
@@ -41,7 +42,6 @@ module UI
   def choose_num(board)
     puts 'please choose any number from board'
     cell = gets.chomp
-
     until board.check_sign(cell)
       if (1..9).include?(cell.to_i)
         puts 'This number is not available. Please choose another number!'
@@ -76,6 +76,5 @@ module UI
   def player2_msg
     puts UI::PLAYER2MSG
     play_again?
-    
   end
 end
