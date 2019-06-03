@@ -13,11 +13,11 @@ instructions
 
 board = Board.new
 show_board(board)
-value = choose_sign
-value2 = decide_other_sign(value)
+sign1 = choose_sign
+sign2 = decide_other_sign(sign1)
 
-player1 = Player.new(value)
-player2 = Player.new(value2)
+player1 = Player.new(sign1)
+player2 = Player.new(sign2)
 
 answer = Game.new(board, player1, player2)
 

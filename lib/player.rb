@@ -10,9 +10,6 @@ class Player
     @sign = sign
   end
 
-  def assign_sign(sign)
-    self.sign = sign.choose_sign
-  end
 
   def make_move(board, cell)
     board.update_board(cell, sign)
