@@ -7,6 +7,7 @@ require_relative '../lib/game.rb'
 require_relative '../lib/module.rb'
 require_relative '../lib/ui.rb'
 
+include BoardLogic
 instructions
 
 board = Board.new
@@ -17,6 +18,6 @@ sign2 = decide_other_sign(sign1)
 player1 = Player.new(sign1)
 player2 = Player.new(sign2)
 
-answer = Game.new(board, player1, player2)
-
-continue_until_no(answer)
+game = Game.new(board, player1, player2)
+game.play
+continue_until_no(game)

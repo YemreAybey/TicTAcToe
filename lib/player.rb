@@ -11,7 +11,9 @@ class Player
     @sign = sign
   end
 
-  def make_move(board, cell)
-    board.update_board(cell, sign)
+  def make_move(board)
+    cell = choose_num(board)
+    board.update_board(cell.to_i, sign)
+    show_board(board)
   end
 end

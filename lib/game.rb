@@ -11,40 +11,25 @@ class Game
     @new_board = board
     @player1 = player1
     @player2 = player2
-    play
   end
 
   def play
-    while @new_board.not_full?
-      playing(@player1, @new_board)
-      return if is_finished?(@new_board)
-
-      playing(@player2, @new_board)
-      return if is_finished?(@new_board)
+    until game_is_over
+      @player1.make_move(@new_board) unless has_won?(@player2) || !@new_board.not_full?
+      @player2.make_move(@new_board) unless has_won?(@player1) || !@new_board.not_full?
+      get_message
     end
   end
 
   private
 
-  def playing(player, board)
-    cell = choose_num(board)
-    player.make_move(board, cell.to_i)
-    show_board(board)
-    is_winner = has_won?(player)
-    if is_winner
-      if player == @player1
-        self.continue = player1_msg
-        return
-      else
-        self.continue = player2_msg
-        return
-      end
-    else
-      is_full = !board.not_full?
-      if is_full
-        self.continue = draw_msg
-        return
-      end
+  def get_message
+    if has_won? @player1
+      self.continue = player1_msg
+    elsif has_won? @player2
+      self.continue = player2_msg
+    elsif !@new_board.not_full?
+      self.continue = draw_msg
     end
   end
 
@@ -52,8 +37,8 @@ class Game
     @new_board.check_winner(player.sign)
   end
 
-  def is_finished?(board)
-    if !board.not_full? || has_won?(@player1) || has_won?(@player2)
+  def game_is_over
+    if !@new_board.not_full? || has_won?(@player1) || has_won?(@player2)
       true
     else
       false
