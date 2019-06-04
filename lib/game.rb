@@ -17,13 +17,13 @@ class Game
     until game_is_over
       @player1.make_move(@new_board) unless has_won?(@player2) || !@new_board.not_full?
       @player2.make_move(@new_board) unless has_won?(@player1) || !@new_board.not_full?
-      get_message
+      display_message if game_is_over
     end
   end
 
   private
 
-  def get_message
+  def display_message
     if has_won? @player1
       self.continue = player1_msg
     elsif has_won? @player2
