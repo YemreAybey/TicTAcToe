@@ -15,8 +15,8 @@ class Board
     @board[num - 1] = char
   end
 
-  def not_full?
-    @board.any? Integer
+  def is_full?
+    @board.all? String
   end
 
   def check_sign(num)

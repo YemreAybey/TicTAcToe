@@ -18,6 +18,8 @@ sign2 = decide_other_sign(sign1)
 player1 = Player.new(sign1)
 player2 = Player.new(sign2)
 
+
 game = Game.new(board, player1, player2)
 game.play
+
 continue_until_no(game)
