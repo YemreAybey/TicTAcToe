@@ -77,4 +77,14 @@ module UI
     puts UI::PLAYER2MSG
     play_again?
   end
+
+  def display_message
+    if has_won? @player1
+      self.continue = player1_msg
+    elsif has_won? @player2
+      self.continue = player2_msg
+    elsif @new_board.is_full?
+      self.continue = draw_msg
+    end
+  end
 end

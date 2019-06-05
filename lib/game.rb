@@ -7,7 +7,7 @@ class Game
   include UI
 
   attr_accessor :continue
-  
+
   def initialize(board, player1, player2)
     @new_board = board
     @player1 = player1
@@ -24,16 +24,6 @@ class Game
 
   private
 
-  def display_message
-    if has_won? @player1
-      self.continue = player1_msg
-    elsif has_won? @player2
-      self.continue = player2_msg
-    elsif @new_board.is_full?
-      self.continue = draw_msg
-    end
-  end
-
   def has_won?(player)
     @new_board.check_winner(player.sign)
   end
@@ -41,5 +31,4 @@ class Game
   def game_is_over?
     @new_board.is_full? || has_won?(@player1) || has_won?(@player2)
   end
-
 end
