@@ -6,7 +6,7 @@ require_relative 'board.rb'
 class Player
   include UI
 
-  attr_accessor :sign
+  attr_reader :sign
   def initialize(sign)
     @sign = sign
   end
